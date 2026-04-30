@@ -3,6 +3,29 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button, TextInput, Platform, TouchableOpacity } from 'react-native';
 import Aviso from './src/components/Aviso';
 
+const albumsInformations = (
+  {
+    id: 1,
+    name:'Black Sabbath',
+    photoPath: './assets/paranoidBlackSabbath.jpg' 
+  },
+  {
+    id: 1,
+    name:'Black Sabbath',
+    photoPath: './assets/paranoidBlackSabbath.jpg' 
+  },
+  {
+    id: 1,
+    name:'Black Sabbath',
+    photoPath: './assets/paranoidBlackSabbath.jpg' 
+  },
+  {
+    id: 1,
+    name:'Black Sabbath',
+    photoPath: './assets/paranoidBlackSabbath.jpg' 
+  }
+);
+
 export default function App() {
   // Criamos o estado para controlar se o aviso aparece ou não
   const [modalVisivel, setModalVisivel] = useState(false);
