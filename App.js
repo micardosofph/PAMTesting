@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react'; // Importamos o useState
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button, TextInput, Platform, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TextInput, Platform, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Aviso from './src/components/Aviso';
+
+const { width } = Dimensions.get('window');
 
 const albumsInformations = [
   {
@@ -67,6 +69,7 @@ export default function App() {
             <Image
               style={styles.albumCover}
               source={album.albumCoverPath}
+              resizeMode="cover"
             />
             <View style={styles.infoContainer}>
               <Text style={styles.albumText}>{album.albumName}</Text>
@@ -109,15 +112,18 @@ const styles = StyleSheet.create({
 
   scrollContent: {
     alignItems: 'center',
-    paddingBottom: 100, // Espaço para o botão inferior
+    paddingBottom: 100,
+    paddingHorizontal: 20,
+    gap: 16
   },
 
   cardContainer: {
     alignItems: 'center',
     backgroundColor: '#e4e4e4',
-    borderRadius: 8,
+    borderRadius: 22,
     padding: 16,
-    margin: '0.85%'
+    width: width * 0.85,
+    marginHorizontal: 10
   },
 
   searchContainer: {
@@ -131,8 +137,8 @@ const styles = StyleSheet.create({
   },
 
   albumCover: {
-    width: '80vw',
-    height: '80vw', // No RN mobile, vh pode dar erro em alguns casos, use números
+    width: '100%',
+    height: 200,
     borderRadius: 6,
     marginBottom: 20
   },
