@@ -6,25 +6,50 @@ import Aviso from './src/components/Aviso';
 const albumsInformations = (
   {
     id: 1,
-    name:'Black Sabbath',
-    photoPath: './assets/paranoidBlackSabbath.jpg' 
+    albumName: 'Black Sabbath',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/blackSabbathBlackSabbath.jpg'
   },
   {
-    id: 1,
-    name:'Black Sabbath',
-    photoPath: './assets/paranoidBlackSabbath.jpg' 
+    id: 2,
+    albumName: 'Paranoid',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/paranoidBlackSabbath.jpg'
   },
   {
-    id: 1,
-    name:'Black Sabbath',
-    photoPath: './assets/paranoidBlackSabbath.jpg' 
+    id: 3,
+    albumName: 'Master of Reality',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/masterOfRealityBlackSabbath.jpg'
   },
   {
-    id: 1,
-    name:'Black Sabbath',
-    photoPath: './assets/paranoidBlackSabbath.jpg' 
+    id: 4,
+    albumName: 'Vol. 4',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/vol4BlackSabbath.jpg'
+  },
+  {
+    id: 5,
+    albumName: 'Sabbath Bloody Sabbath',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/sabbathBloodySabbathBlackSabbath.jpg'
+  },
+  {
+    id: 6,
+    albumName: 'Sabotage',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/SabotageBlackSabbath.jpg'
+  },
+  {
+    id: 7,
+    albumName: 'Technical Ecstasy',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/technicalEcstasyBlackSabbath.jpg'
+  },
+  {
+    id: 8,
+    albumName: 'Never Say Die',
+    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/neverSayDieBlackSabbath.jpg'
   }
 );
+
+// const albumsContainer = 
+// for (let i = 1; i <= albumsInformations.length; i++) {
+
+// }
 
 export default function App() {
   // Criamos o estado para controlar se o aviso aparece ou não
@@ -37,27 +62,34 @@ export default function App() {
       <TextInput style={styles.searchContainer} placeholder="Search here for music..." />
 
       {/* Dica: use aspectRatio para manter o quadrado perfeito no mobile */}
-      <Image 
-        style={styles.albumCover} 
-        source={require('./assets/paranoidBlackSabbath.jpg')} 
-      />
 
-      <View style={styles.infoContainer}>
-        <Text style={styles.albumText}>Paranoid</Text>
-        <Text style={styles.artistText}>Black Sabbath</Text>
+      <View id='albumsContainer'>
+
+      </View>
+
+      <View>
+        <Image
+          style={styles.albumCover}
+          source={require('./assets/BlackSabbathAlbumCoverImages/paranoidBlackSabbath.jpg')}
+        />
+
+        <View style={styles.infoContainer}>
+          <Text style={styles.albumText}>Paranoid</Text>
+          <Text style={styles.artistText}>Black Sabbath</Text>
+        </View>
       </View>
 
       {/* Botão que muda o estado para true */}
-      <TouchableOpacity 
-        style={styles.buttonVerAviso} 
+      <TouchableOpacity
+        style={styles.buttonVerAviso}
         onPress={() => setModalVisivel(true)} >
-          <Text style={styles.buttonVerAvisoText}>Ver aviso</Text>
+        <Text style={styles.buttonVerAvisoText}>Ver aviso</Text>
       </TouchableOpacity>
 
       {/* Chamamos o componente e passamos as funções via props */}
-      <Aviso 
-        visible={modalVisivel} 
-        onClose={() => setModalVisivel(false)} 
+      <Aviso
+        visible={modalVisivel}
+        onClose={() => setModalVisivel(false)}
       />
 
     </View>
@@ -91,7 +123,8 @@ const styles = StyleSheet.create({
 
   albumText: {
     fontSize: 26,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
 
   artistText: {
@@ -100,8 +133,8 @@ const styles = StyleSheet.create({
     color: '#666'
   },
 
-  buttonVerAviso:{
-    position:"absolute",
+  buttonVerAviso: {
+    position: "absolute",
     padding: 8,
     borderRadius: 8,
     backgroundColor: 'black',
@@ -109,9 +142,9 @@ const styles = StyleSheet.create({
     width: '90%'
   },
 
-  buttonVerAvisoText:{
-    color:'white',
+  buttonVerAvisoText: {
+    color: 'white',
     fontSize: '1rem',
-    textAlign:'center'
+    textAlign: 'center'
   }
 });
