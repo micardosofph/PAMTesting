@@ -1,55 +1,50 @@
-import React, { useState } from 'react'; // Importamos o useState
+import React, { useState, useRef } from 'react'; // Importamos o useState
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button, TextInput, Platform, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TextInput, Platform, TouchableOpacity, ScrollView } from 'react-native';
 import Aviso from './src/components/Aviso';
 
-const albumsInformations = (
+const albumsInformations = [
   {
     id: 1,
     albumName: 'Black Sabbath',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/blackSabbathBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/blackSabbathBlackSabbath.jpg')
   },
   {
     id: 2,
     albumName: 'Paranoid',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/paranoidBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/paranoidBlackSabbath.jpg')
   },
   {
     id: 3,
     albumName: 'Master of Reality',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/masterOfRealityBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/masterOfRealityBlackSabbath.jpg')
   },
   {
     id: 4,
     albumName: 'Vol. 4',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/vol4BlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/vol4BlackSabbath.png')
   },
   {
     id: 5,
     albumName: 'Sabbath Bloody Sabbath',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/sabbathBloodySabbathBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/sabbathBloodySabbathBlackSabbath.jpg')
   },
   {
     id: 6,
     albumName: 'Sabotage',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/SabotageBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/sabotageBlackSabbath.jpg')
   },
   {
     id: 7,
     albumName: 'Technical Ecstasy',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/technicalEcstasyBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/technicalEcstasyBlackSabbath.jpg')
   },
   {
     id: 8,
     albumName: 'Never Say Die',
-    albumCoverPath: './assets/BlackSabbathAlbumCoverImages/neverSayDieBlackSabbath.jpg'
+    albumCoverPath: require('./assets/BlackSabbathAlbumCoverImages/neverSayDieBlackSabbath.jpg')
   }
-);
-
-// const albumsContainer = 
-// for (let i = 1; i <= albumsInformations.length; i++) {
-
-// }
+];
 
 export default function App() {
   // Criamos o estado para controlar se o aviso aparece ou não
@@ -61,23 +56,26 @@ export default function App() {
 
       <TextInput style={styles.searchContainer} placeholder="Search here for music..." />
 
-      {/* Dica: use aspectRatio para manter o quadrado perfeito no mobile */}
+      <ScrollView 
+      horizontal = {true}
+      showsHorizontalScrollIndicator = {false}
+      style={styles.scrollView} 
+      contentContainerStyle={styles.scrollContent}>
+        
+        {albumsInformations.map((album) => (
+          <View key={album.id} style={styles.cardContainer}>
+            <Image
+              style={styles.albumCover}
+              source={album.albumCoverPath}
+            />
+            <View style={styles.infoContainer}>
+              <Text style={styles.albumText}>{album.albumName}</Text>
+              <Text style={styles.artistText}>Black Sabbath</Text>
+            </View>
+          </View>
+        ))}
 
-      <View id='albumsContainer'>
-
-      </View>
-
-      <View>
-        <Image
-          style={styles.albumCover}
-          source={require('./assets/BlackSabbathAlbumCoverImages/paranoidBlackSabbath.jpg')}
-        />
-
-        <View style={styles.infoContainer}>
-          <Text style={styles.albumText}>Paranoid</Text>
-          <Text style={styles.artistText}>Black Sabbath</Text>
-        </View>
-      </View>
+      </ScrollView>
 
       {/* Botão que muda o estado para true */}
       <TouchableOpacity
@@ -104,6 +102,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
 
+  scrollView: {
+    marginTop: 110, // Espaço para o Search Bar
+    width: '100%',
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: 100, // Espaço para o botão inferior
+  },
+
+  cardContainer: {
+    alignItems: 'center',
+    backgroundColor: '#e4e4e4',
+    borderRadius: 8,
+    padding: 16,
+    margin: '0.85%'
+  },
+
   searchContainer: {
     position: 'absolute',
     width: '80%',
@@ -117,7 +133,7 @@ const styles = StyleSheet.create({
   albumCover: {
     width: '80vw',
     height: '80vw', // No RN mobile, vh pode dar erro em alguns casos, use números
-    borderRadius: 8,
+    borderRadius: 6,
     marginBottom: 20
   },
 
@@ -144,7 +160,7 @@ const styles = StyleSheet.create({
 
   buttonVerAvisoText: {
     color: 'white',
-    fontSize: '1rem',
+    fontSize: 16,
     textAlign: 'center'
   }
 });
